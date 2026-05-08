@@ -24,7 +24,7 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 
 	public override void _Ready()
 	{
-		CreateAt ??= "scripts/";
+		CreateAt ??= "scripts/server/";
 		_scriptPath = CreateAt + "script.server.luau";
 		base._Ready();
 		_errorLabel.Text = "";
@@ -43,7 +43,7 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 
 		_scriptGroup.Pressed += btn =>
 		{
-			string baseDir = _pathEdit.Text.GetBaseDir();
+			string baseDir = _pathEdit.Text.GetBaseDir().GetBaseDir();
 
 			string scriptName = CreatorService.GetScriptNameFromPath(_pathEdit.Text);
 			ScriptTypeEnum scriptType = btn.Name.ToString() switch
@@ -66,7 +66,13 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 				pathPrefix = baseDir + "/";
 			}
 
-			_pathEdit.Text = $"{pathPrefix}{scriptName}{scriptTypeExtension}.luau";
+			string typeFolder = btn.Name;
+			if (typeFolder == "module")
+			{
+				// The filesystem folder for module scripts has a 's' in the end
+				typeFolder += 's';
+			}
+			_pathEdit.Text = $"{pathPrefix}{typeFolder}/{scriptName}{scriptTypeExtension}.luau";
 		};
 
 		_browseBtn.Pressed += () =>
