@@ -43,7 +43,13 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 
 		_scriptGroup.Pressed += btn =>
 		{
-			string baseDir = _pathEdit.Text.GetBaseDir().GetBaseDir();
+			string baseDir = _pathEdit.Text.GetBaseDir();
+			if (baseDir.EndsWith("/server") ||
+				baseDir.EndsWith("/client") ||
+				baseDir.EndsWith("/modules"))
+			{
+				baseDir = _pathEdit.Text.GetBaseDir().GetBaseDir();
+			}
 
 			string scriptName = CreatorService.GetScriptNameFromPath(_pathEdit.Text);
 			ScriptTypeEnum scriptType = btn.Name.ToString() switch
@@ -60,11 +66,7 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 				scriptTypeExtension = "";
 			}
 
-			string pathPrefix = "";
-			if (!string.IsNullOrEmpty(baseDir))
-			{
-				pathPrefix = baseDir + "/";
-			}
+			string pathPrefix = string.IsNullOrEmpty(baseDir) ? "" : baseDir + '/';
 
 			string typeFolder = btn.Name;
 			if (typeFolder == "module")
@@ -72,7 +74,9 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 				// The filesystem folder for module scripts has a 's' in the end
 				typeFolder += 's';
 			}
-			_pathEdit.Text = $"{pathPrefix}{typeFolder}/{scriptName}{scriptTypeExtension}.luau";
+			typeFolder += '/';
+
+			_pathEdit.Text = $"{pathPrefix}{typeFolder}{scriptName}{scriptTypeExtension}.luau";
 		};
 
 		_browseBtn.Pressed += () =>
