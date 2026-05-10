@@ -1,5 +1,6 @@
 using Polytoria.Shared.Settings;
 using System.Collections.Generic;
+using Polytoria.Datamodel;
 
 namespace Polytoria.Client.Settings;
 
@@ -77,6 +78,22 @@ public static class ClientSettingsRegistry
 					MinValue = 0.2f,
 					MaxValue = 1.2f,
 					Step = 0.1f
+				}
+			},
+			{
+				ClientSettingKeys.General.ScrollSensitivity,
+				new SettingDef<float>
+				{
+					Key = ClientSettingKeys.General.ScrollSensitivity,
+					SectionKey = "general",
+					Label = "Scroll Sensitivity",
+					Description = "Scrolling (zoom in/out) sensitivity.",
+					ValueKind = SettingValueKind.Float,
+					ControlKind = SettingControlKind.Slider,
+					DefaultValue = Camera.DefaultScrollSensitivity,
+					MinValue = 1.0f,
+					MaxValue = 45.0f,
+					Step = 0.4f
 				}
 			},
 			{

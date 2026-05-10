@@ -7,6 +7,7 @@ public static class ClientSettingKeys
 		public const string CtrlLock = "general.ctrl_lock";
 		public const string MasterVolume = "general.master_volume";
 		public const string CameraSensitivity = "general.camera_sensitivity";
+		public const string ScrollSensitivity = "general.scroll_sensitivity";
 	}
 
 	public static class Display

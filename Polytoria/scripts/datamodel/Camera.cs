@@ -25,7 +25,6 @@ public sealed partial class Camera : Dynamic
 	private bool _clipThroughWalls;
 	private float _minDistance;
 	private float _maxDistance;
-	private float _scrollSensitivity;
 	private bool _orthographic;
 	private float _lerpSpeed;
 	private float _scrollLerpSpeed;
@@ -132,15 +131,11 @@ public sealed partial class Camera : Dynamic
 		}
 	}
 
-	[Editable, ScriptProperty, DefaultValue(DefaultScrollSensitivity)]
+	[DefaultValue(DefaultScrollSensitivity)]
 	public float ScrollSensitivity
 	{
-		get => _scrollSensitivity;
-		set
-		{
-			_scrollSensitivity = value;
-			OnPropertyChanged();
-		}
+		get => ClientSettingsService.Instance.Get<float>(ClientSettingKeys.General.ScrollSensitivity);
+		private set;
 	}
 
 	[Editable, ScriptProperty, DefaultValue(false)]
