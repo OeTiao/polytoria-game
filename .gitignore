@@ -31,6 +31,7 @@ TestResults/
 
 # JetBrains Rider
 .idea/
+*.DotSettings.user
 
 # Visual Studio
 .vs/
@@ -71,7 +72,7 @@ TestResults/
 
 ## -- Sample projects -- ##
 
-# Local world storage for contributors 
+# Local world storage for contributors
 /Polytoria/samples/worlds/temp
 /samples/projects/temp
 
