@@ -41,6 +41,9 @@ TestResults/
 *.code-workspace
 .history/
 
+# C# Dev Kit language server cache files
+*.lscache
+
 ## -- Android -- ##
 
 # Generated Android build files (except the manifest)
@@ -95,4 +98,3 @@ TestResults/
 ers
 
 .DS_Store
-Thumbs.db
