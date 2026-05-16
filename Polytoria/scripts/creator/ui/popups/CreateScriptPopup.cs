@@ -47,9 +47,9 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 
 			string typeFolder = "";
 			if ((baseDir.EndsWith("/server") ||
-			     baseDir.EndsWith("/client") ||
-			     baseDir.EndsWith("/modules")) &&
-			    baseDir.GetBaseDir() == "scripts")
+				 baseDir.EndsWith("/client") ||
+				 baseDir.EndsWith("/modules")) &&
+				baseDir.GetBaseDir() == "scripts")
 			{
 				// Removing the script type folder, since we're appending a new one
 				baseDir = baseDir.GetBaseDir();
@@ -57,7 +57,7 @@ public sealed partial class CreateScriptPopup : PopupWindowBase
 				if (typeFolder == "module")
 				{
 					// The filesystem folder for module scripts has a 's' in the end
-					typeFolder += 's';
+					typeFolder = "modules";
 				}
 				typeFolder += '/';
 			}
